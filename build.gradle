@@ -30,6 +30,8 @@ dependencies {
 
     implementation 'mysql:mysql-connector-java:8.0.33'
     implementation 'com.zaxxer:HikariCP:5.1.0'
+
+    implementation 'commons-dbutils:commons-dbutils:1.7'
 }
 
 // Apply a specific Java toolchain to ease working on different environments.
