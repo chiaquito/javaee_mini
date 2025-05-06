@@ -32,7 +32,7 @@ public class SimpleUsecaseImpl implements SimpleUsecase{
         try {
             return repo.findAll();            
         } catch (SQLException e) {
-            throw new RuntimeErrorException(null, e.getMessage());
+            throw new RuntimeException(e.getMessage());
         }
     }
 }
