@@ -1,14 +1,15 @@
 package mini.repository;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.enterprise.context.RequestScoped;
 
+import mini.config.DataBase;
 import mini.model.Simple; 
 
 @RequestScoped
@@ -18,13 +19,9 @@ public class SimpleRepositoryImpl implements SimpleRepository {
     public List<Simple> findAll() throws SQLException {
         List<Simple> res = new ArrayList<>();
 
-        String jdbcUrl = "jdbc:mysql://localhost:3306/db?useSSL=false&serverTimezone=Asia/Tokyo";
-        String dbUser = "root";
-        String dbPassword = "password";
-
         String sql = "SELECT id, name FROM company";
         try (
-            Connection conn = DriverManager.getConnection(jdbcUrl, dbUser, dbPassword);
+            Connection conn = DataBase.getDataSource().getConnection();
             PreparedStatement stmt = conn.prepareStatement(sql);
             ResultSet rs = stmt.executeQuery()
         ) {

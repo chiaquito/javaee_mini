@@ -29,6 +29,7 @@ dependencies {
     implementation libs.guava
 
     implementation 'mysql:mysql-connector-java:8.0.33'
+    implementation 'com.zaxxer:HikariCP:5.1.0'
 }
 
 // Apply a specific Java toolchain to ease working on different environments.
