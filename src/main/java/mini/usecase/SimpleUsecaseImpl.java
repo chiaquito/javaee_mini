@@ -1,11 +1,13 @@
 package mini.usecase;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.management.RuntimeErrorException;
 
+import mini.model.Simple;
 import mini.repository.SimpleRepository;
 // import mini.repository.SimpleRepositoryImpl;
 
@@ -22,13 +24,13 @@ public class SimpleUsecaseImpl implements SimpleUsecase{
     // }
     public SimpleUsecaseImpl() {}
 
-    public String get() throws RuntimeErrorException{
+    public List<Simple> get() throws RuntimeErrorException{
 
         // cdiをする場合には、自分でインスタンス化する必要はない
         // SimpleRepositoryImpl repo = new SimpleRepositoryImpl();
 
         try {
-            return repo.findAll().toString();            
+            return repo.findAll();            
         } catch (SQLException e) {
             throw new RuntimeErrorException(null, e.getMessage());
         }
