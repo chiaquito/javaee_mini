@@ -10,7 +10,7 @@ import org.apache.commons.dbutils.handlers.BeanListHandler;
 
 import mini.config.DataBase;
 import mini.model.Simple;
-import mini.usecase.response.SimpleResponse; 
+import mini.usecase.output.SimpleOutput;
 
 @RequestScoped
 public class SimpleRepositoryImpl implements SimpleRepository {
@@ -23,7 +23,7 @@ public class SimpleRepositoryImpl implements SimpleRepository {
             QueryRunner runner = new QueryRunner();
             
             List<Simple> simples = runner.query(conn, sql, new BeanListHandler<>(Simple.class));
-            List<Simple> res = SimpleResponse.toSimpleResponse(simples);
+            List<Simple> res = SimpleOutput.toSimpleResponse(simples);
             return res;
         }
     }
