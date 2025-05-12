@@ -1,4 +1,4 @@
-package mini.usecase.response;
+package mini.controller.response;
 
 import java.util.ArrayList;
 import java.util.List;

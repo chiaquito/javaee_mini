@@ -9,7 +9,7 @@ import javax.management.RuntimeErrorException;
 
 import mini.model.Simple;
 import mini.repository.SimpleRepository;
-// import mini.repository.SimpleRepositoryImpl;
+import mini.usecase.output.SimpleOutput;
 
 @RequestScoped
 public class SimpleUsecaseImpl implements SimpleUsecase{
@@ -30,7 +30,9 @@ public class SimpleUsecaseImpl implements SimpleUsecase{
         // SimpleRepositoryImpl repo = new SimpleRepositoryImpl();
 
         try {
-            return repo.findAll();            
+            List<Simple> models = repo.findAll();
+            List<Simple> output = SimpleOutput.toSimpleResponse(models);
+            return output;
         } catch (SQLException e) {
             throw new RuntimeException(e.getMessage());
         }
