@@ -8,10 +8,10 @@
 plugins {
     // Apply the application plugin to add support for building a CLI application in Java.
     id 'application'
+    id 'java'
     id 'war'
 }
 
-sourceCompatibility = '1.8'
 
 repositories {
     // Use Maven Central for resolving dependencies.
@@ -30,7 +30,7 @@ dependencies {
     implementation 'com.google.guava:guava:33.0.0-jre'
 
     implementation 'mysql:mysql-connector-java:8.0.33'
-    implementation 'com.zaxxer:HikariCP:5.1.0'
+    implementation 'com.zaxxer:HikariCP:4.0.3'
 
     implementation 'commons-dbutils:commons-dbutils:1.7'
 
@@ -55,6 +55,11 @@ java {
     toolchain {
         languageVersion = JavaLanguageVersion.of(17)
     }
+}
+
+java {
+  sourceCompatibility = JavaVersion.VERSION_1_8
+  targetCompatibility = JavaVersion.VERSION_1_8
 }
 
 application {
