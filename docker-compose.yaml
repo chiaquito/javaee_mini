@@ -1,0 +1,11 @@
+version: '2.1'
+services:
+
+  payara_server:
+    container_name: payara_server
+    build: 
+      context: .
+      dockerfile: ./docker/payara/Dockerfile
+    ports:
+      - 4848:4848
+      - 8080:8080
