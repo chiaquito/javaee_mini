@@ -1,4 +1,4 @@
-package mini.model;
+package mini.domain.model;
 
 public class Simple {
     public Integer id;

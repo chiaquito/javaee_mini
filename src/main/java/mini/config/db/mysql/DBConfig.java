@@ -1,11 +1,11 @@
-package mini.config;
+package mini.config.db.mysql;
 
 import javax.sql.DataSource;
 
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 
-public class DataBase {
+public class DBConfig {
     private static final HikariDataSource ds;
     
     static {

@@ -6,10 +6,11 @@ import javax.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+
+import mini.usecase.simple.SimpleUsecase;
+
 import javax.ws.rs.Produces;
 import javax.ws.rs.Path;
-
-import mini.usecase.SimpleUsecase;
 
 
 

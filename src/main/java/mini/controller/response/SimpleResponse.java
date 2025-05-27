@@ -1,9 +1,10 @@
+// package mini.interface.controller.response;
 package mini.controller.response;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import mini.model.Simple;
+import mini.domain.model.Simple;
 
 public class SimpleResponse {
     static public List<Simple> toSimpleResponse(List<Simple> models) {

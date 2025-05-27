@@ -4,7 +4,7 @@ package mini.usecase.output;
 import java.util.ArrayList;
 import java.util.List;
 
-import mini.model.Simple;
+import mini.domain.model.Simple;
 
 
 public class SimpleOutput {

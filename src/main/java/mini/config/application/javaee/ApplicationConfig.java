@@ -1,4 +1,4 @@
-package mini;
+package mini.config.application.javaee;
 
 import java.util.Set;
 import javax.ws.rs.core.Application;

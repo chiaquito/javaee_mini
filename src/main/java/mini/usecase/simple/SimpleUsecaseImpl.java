@@ -1,4 +1,4 @@
-package mini.usecase;
+package mini.usecase.simple;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -7,8 +7,8 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.management.RuntimeErrorException;
 
-import mini.model.Simple;
-import mini.repository.SimpleRepository;
+import mini.domain.model.Simple;
+import mini.domain.repository.SimpleRepository;
 import mini.usecase.output.SimpleOutput;
 
 @RequestScoped
