@@ -1,19 +1,33 @@
 package mini.config.application.javaee;
 
+import java.util.HashSet;
 import java.util.Set;
 import javax.ws.rs.core.Application;
+
+import mini.controller.simple.SimpleController;
+import mini.domain.repository.SimpleRepository;
+import mini.infrastracture.repository.mysql.SimpleRepositoryImpl;
+
+import mini.usecase.simple.SimpleUsecaseImpl;
+import mini.usecase.simple.SimpleUsecase;
 
 
 @javax.ws.rs.ApplicationPath("api")
 public class ApplicationConfig extends Application {
-    @Override
-    public Set<Class<?>> getClasses() {
-        Set<Class<?>> resources = new java.util.HashSet<>();
-        addRestResourceClasses(resources);
-        return resources;
+
+    private final Set<Object> singletons = new HashSet<>();
+
+    public ApplicationConfig() {
+
+        SimpleRepository repository = new SimpleRepositoryImpl();
+        SimpleUsecase useCase = new SimpleUsecaseImpl(repository);
+        SimpleController controller = new SimpleController(useCase);
+
+        singletons.add(controller);
     }
 
-    private void addRestResourceClasses(Set<Class<?>> resources) {
-        resources.add(mini.controller.SimpleController.class);
+    @Override
+    public Set<Object> getSingletons() {
+        return singletons;
     }
 }

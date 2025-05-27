@@ -16,7 +16,7 @@ import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import static org.junit.jupiter.api.Assertions.*;
 
-import mini.controller.SimpleController;
+import mini.controller.simple.SimpleController;
 import mini.usecase.simple.SimpleUsecase;
 
 @ExtendWith(MockitoExtension.class)

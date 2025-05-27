@@ -1,4 +1,4 @@
-package mini.controller;
+package mini.controller.simple;
 
 
 import javax.enterprise.context.RequestScoped;
@@ -18,10 +18,11 @@ import javax.ws.rs.Path;
 @RequestScoped
 public class SimpleController {
 
-    @Inject
     SimpleUsecase usecase;
     
-    public SimpleController() {}
+    public SimpleController(SimpleUsecase useCase) {
+        this.usecase = useCase;
+    }
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)

@@ -6,5 +6,5 @@ import java.util.List;
 import mini.domain.model.Simple;
 
 public interface SimpleRepository {
-    List<Simple> findAll() throws SQLException;
+    public List<Simple> findAll() throws SQLException;
 }
