@@ -11,4 +11,9 @@ public class Simple {
     public void setName(String name){
         this.name = name;   
     };
+
+    public Simple(Integer id, String name) {
+        this.id = id;
+        this.name = name;
+    }
 }

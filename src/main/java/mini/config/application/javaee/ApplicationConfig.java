@@ -4,12 +4,18 @@ import java.util.HashSet;
 import java.util.Set;
 import javax.ws.rs.core.Application;
 
-import mini.controller.simple.SimpleController;
+import mini.controller.GetCompaniesController;
+import mini.controller.GetCompanyByIdController;
+import mini.controller.GetSimpleController;
+import mini.controller.GetSimpleListController;
+import mini.domain.repository.CompanyRepository;
 import mini.domain.repository.SimpleRepository;
+import mini.infrastracture.repository.mysql.CompanyRepositoryImpl;
 import mini.infrastracture.repository.mysql.SimpleRepositoryImpl;
-
-import mini.usecase.simple.SimpleUsecaseImpl;
-import mini.usecase.simple.SimpleUsecase;
+import mini.usecase.CompanyUsecaseImpl;
+import mini.usecase.CompanyUsecase;
+import mini.usecase.SimpleUsecase;
+import mini.usecase.SimpleUsecaseImpl;
 
 
 @javax.ws.rs.ApplicationPath("api")
@@ -19,11 +25,15 @@ public class ApplicationConfig extends Application {
 
     public ApplicationConfig() {
 
-        SimpleRepository repository = new SimpleRepositoryImpl();
-        SimpleUsecase useCase = new SimpleUsecaseImpl(repository);
-        SimpleController controller = new SimpleController(useCase);
+        SimpleRepository simpleRepo = new SimpleRepositoryImpl();
+        CompanyRepository companyRepo = new CompanyRepositoryImpl();
+        SimpleUsecase simpleUsecase = new SimpleUsecaseImpl(simpleRepo);
+        CompanyUsecase companyUsecase = new CompanyUsecaseImpl(companyRepo);
 
-        singletons.add(controller);
+        singletons.add(new GetSimpleListController(simpleUsecase));
+        singletons.add(new GetSimpleController(simpleUsecase));
+        singletons.add(new GetCompaniesController(companyUsecase));
+        singletons.add(new GetCompanyByIdController(companyUsecase));
     }
 
     @Override
