@@ -18,11 +18,11 @@ import mini.usecase.output.SimpleOutput;
 
 @Path("/simple")
 @RequestScoped
-public class GetSimpleController {
+public class SimpleController {
 
     SimpleUsecase usecase;
     
-    public GetSimpleController(SimpleUsecase useCase) {
+    public SimpleController(SimpleUsecase useCase) {
         this.usecase = useCase;
     }
 

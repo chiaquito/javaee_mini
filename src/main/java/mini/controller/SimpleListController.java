@@ -7,24 +7,21 @@ import javax.enterprise.context.RequestScoped;
 import javax.ws.rs.GET;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.Produces;
+import javax.ws.rs.Path;
 
 import mini.controller.response.ErrorResponse;
 import mini.controller.response.SimpleListControllerResponse;
 import mini.usecase.SimpleUsecase;
 import mini.usecase.output.SimpleOutput;
 
-import javax.ws.rs.Produces;
-import javax.ws.rs.Path;
-
-
-
 @Path("/simple")
 @RequestScoped
-public class GetSimpleListController {
+public class SimpleListController {
 
     SimpleUsecase usecase;
     
-    public GetSimpleListController(SimpleUsecase useCase) {
+    public SimpleListController(SimpleUsecase useCase) {
         this.usecase = useCase;
     }
 

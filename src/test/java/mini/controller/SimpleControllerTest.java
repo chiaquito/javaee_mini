@@ -19,7 +19,7 @@ import javax.ws.rs.core.Response;
 class GetSimpleControllerTest {
 
     @InjectMocks
-    GetSimpleListController controller;
+    SimpleListController controller;
 
     @Mock
     SimpleUsecase mockUsecase;
