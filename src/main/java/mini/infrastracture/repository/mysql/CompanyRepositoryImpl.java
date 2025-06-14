@@ -2,13 +2,16 @@ package mini.infrastracture.repository.mysql;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.List;
 
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
+import org.apache.commons.dbutils.handlers.ScalarHandler;
 
 import mini.config.db.mysql.DBConfig;
+import mini.domain.SystemErrException;
 import mini.domain.model.Company;
 import mini.domain.repository.CompanyRepository;
 
@@ -41,6 +44,20 @@ public class CompanyRepositoryImpl implements CompanyRepository {
             System.out.println(e.getMessage());
             System.out.println(e.getStackTrace());
             throw new RuntimeException(e.getMessage());
+        }
+    }
+
+    @Override
+    public void create(String name, String establishedDate, Integer createUserId) {
+
+        String sql = "INSERT INTO company (name, established_date, created_user_id, updated_user_id, created_at, updated_at, version) VALUES (?, ?, ?, ?, ?, ? ,?);";
+        QueryRunner runner = new QueryRunner();
+        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+
+        try (Connection conn = DBConfig.getDataSource().getConnection()) {
+            runner.insert(conn, sql, new ScalarHandler<>(), name, establishedDate, createUserId, createUserId, timestamp, timestamp, 1);
+        } catch(SQLException e){
+            throw new SystemErrException(e.getMessage(), e);
         }
     }
 }

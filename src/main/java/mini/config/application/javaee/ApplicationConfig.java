@@ -4,10 +4,11 @@ import java.util.HashSet;
 import java.util.Set;
 import javax.ws.rs.core.Application;
 
-import mini.controller.GetCompaniesController;
-import mini.controller.GetCompanyByIdController;
-import mini.controller.GetSimpleController;
-import mini.controller.GetSimpleListController;
+import mini.controller.CompaniesController;
+import mini.controller.CompanyByIdController;
+import mini.controller.CompanyCreateController;
+import mini.controller.SimpleController;
+import mini.controller.SimpleListController;
 import mini.domain.repository.CompanyRepository;
 import mini.domain.repository.SimpleRepository;
 import mini.infrastracture.repository.mysql.CompanyRepositoryImpl;
@@ -30,10 +31,11 @@ public class ApplicationConfig extends Application {
         SimpleUsecase simpleUsecase = new SimpleUsecaseImpl(simpleRepo);
         CompanyUsecase companyUsecase = new CompanyUsecaseImpl(companyRepo);
 
-        singletons.add(new GetSimpleListController(simpleUsecase));
-        singletons.add(new GetSimpleController(simpleUsecase));
-        singletons.add(new GetCompaniesController(companyUsecase));
-        singletons.add(new GetCompanyByIdController(companyUsecase));
+        singletons.add(new SimpleListController(simpleUsecase));
+        singletons.add(new SimpleController(simpleUsecase));
+        singletons.add(new CompaniesController(companyUsecase));
+        singletons.add(new CompanyByIdController(companyUsecase));
+        singletons.add(new CompanyCreateController(companyUsecase));
     }
 
     @Override

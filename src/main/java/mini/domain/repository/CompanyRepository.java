@@ -10,4 +10,6 @@ public interface CompanyRepository {
     public List<Company> findAll() throws SQLException;
     // retrieve Company by id
     public Company getById(Integer id);
+    // create Company
+    public void create(String name, String establishedDate, Integer createUserId);
 }

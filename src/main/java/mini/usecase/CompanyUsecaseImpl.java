@@ -6,13 +6,15 @@ import java.util.List;
 
 import javax.management.RuntimeErrorException;
 
+import mini.domain.SystemErrException;
 import mini.domain.model.Company;
 import mini.domain.repository.CompanyRepository;
+import mini.usecase.input.CompanyCreateInput;
 import mini.usecase.input.CompanyInput;
 import mini.usecase.output.CompanyOutput;
 
 public class CompanyUsecaseImpl implements CompanyUsecase{
- 
+
     CompanyRepository repo;
     
     public CompanyUsecaseImpl(CompanyRepository repo) {
@@ -37,5 +39,14 @@ public class CompanyUsecaseImpl implements CompanyUsecase{
         CompanyOutput output = CompanyOutput.toCompanyOutput(model);
         return output;
     };
+
+    public void create(CompanyCreateInput input) {
+        try {
+            repo.create(input.getName(), input.getEstablishedDate(), input.getCreateUserId());
+        }catch(SystemErrException e) {
+            throw e;
+        }
+    };
+
     
 }

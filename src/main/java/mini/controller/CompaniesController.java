@@ -20,11 +20,12 @@ import javax.ws.rs.Path;
 
 @Path("/company")
 @RequestScoped
-public class GetCompaniesController {
+@Produces(MediaType.APPLICATION_JSON)
+public class CompaniesController {
 
     private CompanyUsecase usecase;
     
-    public GetCompaniesController(CompanyUsecase usecase) {
+    public CompaniesController(CompanyUsecase usecase) {
         this.usecase = usecase;
     }
 

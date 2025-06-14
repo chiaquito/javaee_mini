@@ -18,10 +18,10 @@ import javax.ws.rs.PathParam;
 
 @Path("/company")
 @RequestScoped
-public class GetCompanyByIdController {
+public class CompanyByIdController {
     CompanyUsecase usecase;
     
-    public GetCompanyByIdController(CompanyUsecase useCase) {
+    public CompanyByIdController(CompanyUsecase useCase) {
         this.usecase = useCase;
     }
     @Path("/{id}")
@@ -37,7 +37,6 @@ public class GetCompanyByIdController {
 
         } catch(RuntimeException e) {
             return ErrorResponse.toResponse(Response.Status.BAD_REQUEST, e);
-        }
-        
+        }        
     }
 }
