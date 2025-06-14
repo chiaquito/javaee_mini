@@ -16,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import javax.ws.rs.core.Response;
 
 @ExtendWith(MockitoExtension.class)
-class GetSimpleControllerTest {
+class SimpleControllerTest {
 
     @InjectMocks
     SimpleListController controller;
