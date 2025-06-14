@@ -30,9 +30,6 @@ public class CompanyCreateController {
     @POST
     public Response create(CompanyCreateRequest req){
 
-        System.out.printf("name: %s",req.getName());
-        System.out.printf("establishedDate: %s",req.getEstablishedDate());
-        System.out.printf("createdUserId: %d",req.getCreatedUserId());
         try {
             CompanyCreateInput input = new CompanyCreateInput(req.getName(), req.getEstablishedDate(), req.getCreatedUserId());
             usecase.create(input);
