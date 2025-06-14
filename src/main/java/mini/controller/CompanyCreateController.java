@@ -36,7 +36,7 @@ public class CompanyCreateController {
         try {
             CompanyCreateInput input = new CompanyCreateInput(req.getName(), req.getEstablishedDate(), req.getCreatedUserId());
             usecase.create(input);
-            return Response.ok("kk").build();
+            return Response.ok("success").build();
         } catch(SystemErrException err) {
             return ErrorResponse.toResponse(Response.Status.INTERNAL_SERVER_ERROR, err);
         }
