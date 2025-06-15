@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.management.RuntimeErrorException;
 
+import mini.config.application.javaee.Context;
 import mini.domain.SystemErrException;
 import mini.domain.model.Company;
 import mini.domain.repository.CompanyRepository;
@@ -40,9 +41,9 @@ public class CompanyUsecaseImpl implements CompanyUsecase{
         return output;
     };
 
-    public void create(CompanyCreateInput input) {
+    public void create(Context ctx, CompanyCreateInput input) {
         try {
-            repo.create(input.getName(), input.getEstablishedDate(), input.getCreateUserId());
+            repo.create(ctx, input.getName(), input.getEstablishedDate(), input.getCreateUserId());
         }catch(SystemErrException e) {
             throw e;
         }

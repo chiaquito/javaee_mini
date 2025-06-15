@@ -10,6 +10,7 @@ import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
 import org.apache.commons.dbutils.handlers.ScalarHandler;
 
+import mini.config.application.javaee.Context;
 import mini.config.db.mysql.DBConfig;
 import mini.domain.SystemErrException;
 import mini.domain.model.Company;
@@ -48,14 +49,14 @@ public class CompanyRepositoryImpl implements CompanyRepository {
     }
 
     @Override
-    public void create(String name, String establishedDate, Integer createUserId) {
+    public void create(Context ctx, String name, String establishedDate, Integer createUserId) {
 
         String sql = "INSERT INTO company (name, established_date, created_user_id, updated_user_id, created_at, updated_at, version) VALUES (?, ?, ?, ?, ?, ? ,?);";
         QueryRunner runner = new QueryRunner();
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
 
-        try (Connection conn = DBConfig.getDataSource().getConnection()) {
-            runner.insert(conn, sql, new ScalarHandler<>(), name, establishedDate, createUserId, createUserId, timestamp, timestamp, 1);
+        try {
+            runner.insert(ctx.getConnection(), sql, new ScalarHandler<>(), name, establishedDate, createUserId, createUserId, timestamp, timestamp, 1);
         } catch(SQLException e){
             throw new SystemErrException(e.getMessage(), e);
         }
