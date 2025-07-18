@@ -23,8 +23,8 @@ public class SimpleRepositoryImpl implements SimpleRepository {
         try (Connection conn = DBConfig.getDataSource().getConnection()) {
             QueryRunner runner = new QueryRunner();
             
-            List<Simple> res = runner.query(conn, sql, new BeanListHandler<>(Simple.class));
-            return res;
+            List<SimpleTableModel> res = runner.query(conn, sql, new BeanListHandler<>(SimpleTableModel.class));
+            return SimpleTableModel.toModels(res);
         }
     }
 
