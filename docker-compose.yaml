@@ -1,11 +1,23 @@
-version: '2.1'
 services:
+  ## Uncomment the following lines to use payara servr container in local development
+  # payara_server:
+  #   container_name: payara_server
+  #   build: 
+  #     context: .
+  #     dockerfile: ./docker/payara/Dockerfile
+  #   ports:
+  #     - 4848:4848
+  #     - 8080:8080
 
-  payara_server:
-    container_name: payara_server
-    build: 
-      context: .
-      dockerfile: ./docker/payara/Dockerfile
+  db:
+    image: mysql:latest
+    container_name: db
     ports:
-      - 4848:4848
-      - 8080:8080
+      - "3306:3306"
+    volumes:
+      - ./docker/database/init.d:/docker-entrypoint-initdb.d
+      - ./docker/database/mysql.cnf:/etc/mysql/conf.d/mysql.cnf
+    environment:
+      - MYSQL_DATABASE=db
+      - MYSQL_ROOT_PASSWORD=password
+      - TZ=Asia/Tokyo

@@ -1,30 +1,34 @@
 After clone this repository execute these commands to start this application
 
-1. Put Payara server in servers directory
+1. Run MySQL container
+```
+docker compose up -d
+```
+2. Put Payara server in servers directory
 ```
 make download-payara
 ```
-2. Configure the environment by replacing domain.xml in Payara server
+3. Configure the environment by replacing domain.xml in Payara server
 ```
 make setup-domain
 ```
-3.  Generate autodeploy directory by starting server
+4.  Generate autodeploy directory by starting server
 ```
 make start
 ```
-4. Build 
+5. Build 
 ```
 make build
 ```
-5. Deploy 
+6. Deploy 
 ```
 make restart
 ```
-6. Access the App
+7. Access the App
 ```
 http://localhost:8080/mini/api/simple
 ```
-7. Finish App
+8. Finish App
 ```
 make stop
 ```
