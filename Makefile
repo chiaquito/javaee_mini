@@ -14,6 +14,7 @@ build:
 restart:
 	cp ./build/libs/mini.war ./servers/payara5/glassfish/domains/domain1/autodeploy
 	./servers/payara5/glassfish/bin/asadmin restart-domain
+	@echo Click here to check app works or not! http://localhost:8080/mini/api/simple
 
 .PHONY: stop
 stop:
