@@ -8,6 +8,12 @@ services:
   #   ports:
   #     - 4848:4848
   #     - 8080:8080
+  #   environment:
+  #     - dbHost=db
+  #     - dbPort=3306
+  #     - dbName=db
+  #     - dbUser=root
+  #     - dbPassword=password
 
   db:
     image: mysql:latest
