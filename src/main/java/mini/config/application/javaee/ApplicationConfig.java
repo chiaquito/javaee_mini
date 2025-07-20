@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 import javax.ws.rs.core.Application;
 
+import mini.controller.HealthController;
 import mini.controller.CompaniesController;
 import mini.controller.CompanyByIdController;
 import mini.controller.CompanyCreateController;
@@ -31,6 +32,7 @@ public class ApplicationConfig extends Application {
         SimpleUsecase simpleUsecase = new SimpleUsecaseImpl(simpleRepo);
         CompanyUsecase companyUsecase = new CompanyUsecaseImpl(companyRepo);
 
+        singletons.add(new HealthController());
         singletons.add(new SimpleListController(simpleUsecase));
         singletons.add(new SimpleController(simpleUsecase));
         singletons.add(new CompaniesController(companyUsecase));
