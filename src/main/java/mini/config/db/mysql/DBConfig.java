@@ -20,7 +20,7 @@ public class DBConfig {
 
 
         String jdbcUrl = String.format(
-        "jdbc:mysql://%s:%s/%s?useSSL=false&serverTimezone=Asia/Tokyo",
+        "jdbc:mysql://%s:%s/%s?useSSL=false&serverTimezone=Asia/Tokyo&allowPublicKeyRetrieval=true",
                 Env.getEnv().get("dbHost"),
                 Env.getEnv().get("dbPort"),
                 Env.getEnv().get("dbName")
