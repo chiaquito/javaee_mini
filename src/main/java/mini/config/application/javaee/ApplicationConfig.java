@@ -2,8 +2,11 @@ package mini.config.application.javaee;
 
 import java.util.HashSet;
 import java.util.Set;
+
+import javax.sql.DataSource;
 import javax.ws.rs.core.Application;
 
+import mini.config.db.mysql.MySQLConfig;
 import mini.controller.HealthController;
 import mini.controller.CompaniesController;
 import mini.controller.CompanyByIdController;
@@ -27,8 +30,10 @@ public class ApplicationConfig extends Application {
 
     public ApplicationConfig() {
 
-        SimpleRepository simpleRepo = new SimpleRepositoryImpl();
-        CompanyRepository companyRepo = new CompanyRepositoryImpl();
+        DataSource ds = MySQLConfig.getDataSource();
+        
+        SimpleRepository simpleRepo = new SimpleRepositoryImpl(ds);
+        CompanyRepository companyRepo = new CompanyRepositoryImpl(ds);
         SimpleUsecase simpleUsecase = new SimpleUsecaseImpl(simpleRepo);
         CompanyUsecase companyUsecase = new CompanyUsecaseImpl(companyRepo);
 

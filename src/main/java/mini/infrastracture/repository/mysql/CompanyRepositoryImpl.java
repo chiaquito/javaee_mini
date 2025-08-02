@@ -1,6 +1,7 @@
 package mini.infrastracture.repository.mysql;
 
 import java.sql.Connection;
+import javax.sql.DataSource;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.List;
@@ -11,18 +12,23 @@ import org.apache.commons.dbutils.handlers.BeanListHandler;
 import org.apache.commons.dbutils.handlers.ScalarHandler;
 
 import mini.config.application.javaee.Context;
-import mini.config.db.mysql.DBConfig;
 import mini.domain.SystemErrException;
 import mini.domain.model.Company;
 import mini.domain.repository.CompanyRepository;
 
 public class CompanyRepositoryImpl implements CompanyRepository {
+
+    private DataSource ds;
+
+    public CompanyRepositoryImpl(DataSource ds) {
+        this.ds = ds;
+    }
     
     @Override
     public List<Company> findAll() throws SQLException {
 
         String sql = "SELECT id, name FROM company";
-        try (Connection conn = DBConfig.getDataSource().getConnection()) {
+        try (Connection conn = ds.getConnection()) {
             QueryRunner runner = new QueryRunner();
             
             List<CompanyTableModel> res = runner.query(conn, sql, new BeanListHandler<>(CompanyTableModel.class));
@@ -37,7 +43,7 @@ public class CompanyRepositoryImpl implements CompanyRepository {
         QueryRunner runner = new QueryRunner();
         BeanHandler<CompanyTableModel> handler = new BeanHandler<>(CompanyTableModel.class);
 
-        try (Connection conn = DBConfig.getDataSource().getConnection()) {
+        try (Connection conn = ds.getConnection()) {
             CompanyTableModel record = runner.query(conn, sql, handler, id);
             return CompanyTableModel.toModel(record);
 

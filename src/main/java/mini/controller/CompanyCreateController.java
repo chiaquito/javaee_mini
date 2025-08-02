@@ -17,7 +17,7 @@ import mini.domain.SystemErrException;
 import mini.usecase.CompanyUsecase;
 import mini.usecase.input.CompanyCreateInput;
 import mini.config.application.javaee.Context;
-import mini.config.db.mysql.DBConfig;
+import mini.config.db.mysql.MySQLConfig;
 
 @Path("/company")
 
@@ -34,7 +34,7 @@ public class CompanyCreateController {
     @Consumes(MediaType.APPLICATION_JSON)
     @POST
     public Response create(CompanyCreateRequest req){
-        try (Connection conn = DBConfig.getDataSource().getConnection()) {
+        try (Connection conn = MySQLConfig.getDataSource().getConnection()) {
 
             conn.setAutoCommit(false);
             Context ctx = new Context(conn);

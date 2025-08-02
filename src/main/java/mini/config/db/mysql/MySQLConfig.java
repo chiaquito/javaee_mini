@@ -5,9 +5,9 @@ import javax.sql.DataSource;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 
-import mini.config.Env;
+import mini.config.DatabaseConf;
 
-public class DBConfig {
+public class MySQLConfig {
     private static final HikariDataSource ds;
     
     static {
@@ -21,15 +21,15 @@ public class DBConfig {
 
         String jdbcUrl = String.format(
         "jdbc:mysql://%s:%s/%s?useSSL=false&serverTimezone=Asia/Tokyo&allowPublicKeyRetrieval=true",
-                Env.getEnv().get("dbHost"),
-                Env.getEnv().get("dbPort"),
-                Env.getEnv().get("dbName")
+                DatabaseConf.getInstance().getHost(),
+                DatabaseConf.getInstance().getPort(),
+                DatabaseConf.getInstance().getName()
                 );
                 
         HikariConfig config = new HikariConfig();
         config.setJdbcUrl(jdbcUrl);
-        config.setUsername(Env.getEnv().get("dbUser"));
-        config.setPassword(Env.getEnv().get("dbPassword"));
+        config.setUsername(DatabaseConf.getInstance().getUser());
+        config.setPassword(DatabaseConf.getInstance().getPassword());
         config.setMaximumPoolSize(3); 
 
         ds = new HikariDataSource(config);
