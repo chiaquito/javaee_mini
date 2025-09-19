@@ -8,7 +8,7 @@ import com.zaxxer.hikari.HikariDataSource;
 import mini.config.DatabaseConf;
 
 public class MySQLConfig {
-    private static final HikariDataSource ds;
+    private static HikariDataSource ds;
     
     static {
 
@@ -19,6 +19,7 @@ public class MySQLConfig {
         }
 
 
+        try {
         String jdbcUrl = String.format(
         "jdbc:mysql://%s:%s/%s?useSSL=false&serverTimezone=Asia/Tokyo&allowPublicKeyRetrieval=true",
                 DatabaseConf.getInstance().getHost(),
@@ -35,6 +36,9 @@ public class MySQLConfig {
         ds = new HikariDataSource(config);
 
         System.out.printf("pathの確認: %s",System.getenv("PATH"));
+        } catch (Exception e) {
+            ds = new HikariDataSource();
+        }
     }
 
     public static DataSource getDataSource() {
